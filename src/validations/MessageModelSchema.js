@@ -9,8 +9,6 @@ const joiMessageSchema = {
     .required(),
   user: Joi.string()
     .required(),
-  admin: Joi.bool()
-    .default(false),
 }
 
 const messageSchema = Joi.object(joiMessageSchema)
