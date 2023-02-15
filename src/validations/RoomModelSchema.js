@@ -24,6 +24,8 @@ const joiRoomSchema = {
     .default(true),
   permissions: Joi.string()
     .default('1'),
+  owner: Joi.string()
+    .required()
 }
 
 const roomSchema = Joi.object(joiRoomSchema)

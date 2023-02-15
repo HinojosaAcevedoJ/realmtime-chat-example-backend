@@ -1,7 +1,10 @@
 const Room = require('../../validations/RoomModelSchema')
 
 const createRoom = async (req, res) => {
-  const data = new Room(req.body)
+  const data = new Room({
+    ...req.body,
+    owner: res.locals.decodedToken.sub
+  })
   data.users.push(res.locals.decodedToken.sub)
   const response = await data.save()
   if (response) {

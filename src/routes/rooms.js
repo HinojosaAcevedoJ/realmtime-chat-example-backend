@@ -4,11 +4,14 @@ const {
   getRooms,
   getMessagesByRoomId,
   joinRoom,
-  sendMessage
+  sendMessage,
+  deleteRoomById,
+  updateRoomById
 } = require('../controllers')
 
 const withAuth = require('../middlewares/withAuth')
 const isMember = require('../middlewares/isMember')
+const verifyOwnership = require('../middlewares/verifyOwnership')
 
 const routes = new Router()
 
@@ -21,5 +24,9 @@ routes.post('/', withAuth, createRoom)
 routes.post('/:roomId/join', withAuth, joinRoom)
 
 routes.post('/:roomId/messages', withAuth, isMember, sendMessage)
+
+routes.delete('/:roomId', withAuth, verifyOwnership, deleteRoomById)
+
+routes.put('/:roomId', withAuth, verifyOwnership, updateRoomById)
 
 module.exports = routes

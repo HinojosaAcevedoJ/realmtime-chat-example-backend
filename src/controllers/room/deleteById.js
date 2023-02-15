@@ -1,12 +1,12 @@
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
 
 const Room = require('../../validations/RoomModelSchema')
 
-const { ObjectId } = mongoose.Types
+// const { ObjectId } = mongoose.Types
 
 const deleteById = async (req, res) => {
-  const { id } = req.params
-  const response = await Room.deleteOne({ _id: new ObjectId(id) })
+  const { roomid } = req.params
+  const response = await Room.deleteOne(roomid)
   console.log(response)
   if (response) {
     res.status(200).json({ message: 'Sala eliminada con éxito' })

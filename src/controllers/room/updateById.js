@@ -5,18 +5,18 @@ const Room = require('../../validations/RoomModelSchema')
 const { ObjectId } = mongoose.Types
 
 const updateById = async (req, res) => {
-  const { id } = req.params
-  if (!ObjectId.isValid(id)) {
-    res.status(404).json({ message: 'Sala no encontrado' })
+  const { roomId } = req.params
+  if (!ObjectId.isValid(roomId)) {
+    res.status(404).json({ message: 'Sala no encontrada' })
   }
 
   const payload = req.body
 
-  const response = await Room.findByIdAndUpdate(ObjectId(id), payload)
+  const response = await Room.findByIdAndUpdate(ObjectId(roomId), payload)
   if (response) {
     res.status(200).json({ message: 'Sala actualizada' })
   } else {
-    res.status(404).json({ message: 'Sala no encontrado' })
+    res.status(404).json({ message: 'Sala no encontrada' })
   }
 }
 
