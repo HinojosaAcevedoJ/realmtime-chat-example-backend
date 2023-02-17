@@ -8,6 +8,7 @@ const updateRoomById = require('./room/updateById')
 const sendMessage = require('./room/sendMessage')
 const getMessagesByRoomId = require('./room/getMessagesByRoomId')
 const joinRoom = require('./room/joinRoom')
+const leaveRoom = require('./room/leaveRoom')
 
 module.exports = {
   signup,
@@ -19,5 +20,6 @@ module.exports = {
   updateRoomById,
   sendMessage,
   getMessagesByRoomId,
-  joinRoom
+  joinRoom,
+  leaveRoom
 }

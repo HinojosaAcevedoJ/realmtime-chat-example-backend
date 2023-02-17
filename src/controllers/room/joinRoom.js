@@ -8,11 +8,11 @@ const joinRoom = async (req, res) => {
   const room = await Room.findById(roomId)
 
   if (!room) {
-    res.status(404).json({ message: 'Sala no encontrada' })
+    res.status(404).send({ message: 'Sala no encontrada' })
   }
 
   if (room.password && room.password !== password) {
-    res.status(401).json({ message: 'Contraseña incorrecta' })
+    res.status(401).send({ message: 'Contraseña incorrecta' })
   }
 
   if (!room.users.includes(userId)) {
@@ -23,6 +23,8 @@ const joinRoom = async (req, res) => {
     } else {
       res.status(500).json({ message: 'Internal Error' })
     }
+  } else {
+    res.status(200).json({ message: 'Ya estás en la sala' })
   }
 }
 
