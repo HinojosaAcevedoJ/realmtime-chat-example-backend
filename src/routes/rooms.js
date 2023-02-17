@@ -6,7 +6,8 @@ const {
   joinRoom,
   sendMessage,
   deleteRoomById,
-  updateRoomById
+  updateRoomById,
+  leaveRoom
 } = require('../controllers')
 
 const withAuth = require('../middlewares/withAuth')
@@ -28,5 +29,7 @@ routes.post('/:roomId/messages', withAuth, isMember, sendMessage)
 routes.delete('/:roomId', withAuth, verifyOwnership, deleteRoomById)
 
 routes.put('/:roomId', withAuth, verifyOwnership, updateRoomById)
+
+routes.post('/:roomId/leave', withAuth, leaveRoom)
 
 module.exports = routes
